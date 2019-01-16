@@ -1,5 +1,5 @@
 # message_scheduler
-schedule message on a given date time
+Schedule message on a given date time
 ## Installation
 Install Rabbitmq
 ```
