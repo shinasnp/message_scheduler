@@ -29,7 +29,7 @@ python manage.py test
 ### To schedule a message at a given time(UTC time)
 ```
 curl -X POST \
-  http://127.0.0.1:8000/home/ \
+  http://127.0.0.1:8000/message/ \
   -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
   -F 'datetime=16/01/2019 17:51' \
   -F 'message=Sample Message'
