@@ -1,10 +1,6 @@
 # message_scheduler
 Schedule message on a given date time
 ## Installation
-Install Rabbitmq
-```
-sudo apt-get install rabbitmq-server
-```
 Install Virtaul enviornment
 
 ```
@@ -19,7 +15,8 @@ pip3 install -r requirement.txt
 ```
 ### Start celery  Worker
 ```
-celery -A scheduler worker --loglevel info
+export CLOUDAMQP_URL=amqp://username:password@hostname/vhost
+celery -A scheduler worker --loglevel info --without-gossip --without-mingle --without-heartbeat
 ```
 ### Start Api
 ```
