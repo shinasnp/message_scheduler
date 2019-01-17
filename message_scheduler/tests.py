@@ -41,6 +41,24 @@ class ScheduleTests(TestCase):
 		response = self.client.post(url, data=data, headers=headers)
 		assert response.status_code == 400
 
+	def test_old_datetime(self):
+		"""
+            Should return 400 on valid data
+        """
+		
+		mimetype = 'application/json'
+		headers = {
+			"Content-Type": mimetype,
+			"Accept": mimetype
+		}
+		data = {
+			"message":"hellooo",
+			"datetime":"16/01/2019 16:32"
+		}
+		url = "/message/"
+		response = self.client.post(url, data=data, headers=headers)
+		assert response.status_code == 400
+
 	def test_valid_data(self):
 		"""
             Should return 202 on valid data
@@ -53,7 +71,7 @@ class ScheduleTests(TestCase):
 		}
 		data = {
 			"message":"hellooo",
-			"datetime":"16/01/2019 16:32"
+			"datetime":"16/10/2019 16:32"
 		}
 		url = "/message/"
 		response = self.client.post(url, data=data, headers=headers)
