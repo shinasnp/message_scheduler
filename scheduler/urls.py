@@ -20,6 +20,6 @@ from message_scheduler.views import message_schedule
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', message_schedule,name='home')
+    path('message/', message_schedule,name='message')
 
 ]

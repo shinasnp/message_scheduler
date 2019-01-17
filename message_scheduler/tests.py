@@ -19,7 +19,7 @@ class ScheduleTests(TestCase):
 			"message":"hellooo",
 			"datetime":""
 		}
-		url = "/home/"
+		url = "/message/"
 		response = self.client.post(url, data=data, headers=headers)
 		assert response.status_code == 400
 
@@ -37,7 +37,7 @@ class ScheduleTests(TestCase):
 			"message":"hellooo",
 			"datetime":"434426633"
 		}
-		url = "/home/"
+		url = "/message/"
 		response = self.client.post(url, data=data, headers=headers)
 		assert response.status_code == 400
 
@@ -55,7 +55,7 @@ class ScheduleTests(TestCase):
 			"message":"hellooo",
 			"datetime":"16/01/2019 16:32"
 		}
-		url = "/home/"
+		url = "/message/"
 		response = self.client.post(url, data=data, headers=headers)
 		assert response.status_code == 202
 

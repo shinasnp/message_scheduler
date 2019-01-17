@@ -34,7 +34,7 @@ def message_schedule(request):
 			return JsonResponse(
 			{
 				"status":"ERROR",
-				"message":" datetime should be greater than current time "
+				"message":" datetime should be greater than current UTC time "
 			},status=400)
 
 	except ValueError:
