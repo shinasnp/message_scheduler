@@ -12,22 +12,30 @@ def message_schedule(request):
 	'''
 		This will schedule given message on given date time .
 	'''
-	datetime = request.POST.get('datetime')
+
+	request_datetime = request.POST.get('datetime')
 	message = request.POST.get('message')
-	if not message or not datetime:
+	if not message or not request_datetime:
 		return JsonResponse(
 			{
 				"status":"ERROR",
 				"message":" message or datetime is missing "
 			},status=400)
 	try:
-		parsed_datetime = parser.parse(datetime)
-		schedule_message.apply_async(args=(message,),eta=parsed_datetime)
-		return JsonResponse(
+		parsed_datetime = parser.parse(request_datetime)
+		if parsed_datetime > datetime.datetime.now():
+			schedule_message.apply_async(args=(message,),eta=parsed_datetime)
+			return JsonResponse(
+				{
+					"status":"SUCCESS",
+					"message":" ACCEPTED "
+				},status=202)
+		else:
+			return JsonResponse(
 			{
-				"status":"SUCCESS",
-				"message":" ACCEPTED "
-			},status=202)
+				"status":"ERROR",
+				"message":" datetime should be greater than current time "
+			},status=400)
 
 	except ValueError:
 		return JsonResponse(
