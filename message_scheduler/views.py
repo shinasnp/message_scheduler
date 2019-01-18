@@ -15,9 +15,14 @@ def message_schedule(request):
 	'''
 		This will schedule given message on given date time .
 	'''
-	data = json.loads(request.body)
-	request_datetime = data.get('datetime')
-	message = data.get('message')
+	if not request.POST:
+		data = json.loads(request.body)
+		request_datetime = data.get('datetime')
+		message = data.get('message')
+	else:
+		request_datetime = request.POST.get('datetime')
+		message = request.POST.get('message')
+
 	if not message or not request_datetime:
 		return JsonResponse(
 			{
