@@ -42,7 +42,7 @@ python manage.py runserver
 ```
 python manage.py test
 ```
-### To schedule a message at a given time(UTC time)
+### To schedule a message at a given time
 ```
 curl -X POST \
   http://127.0.0.1:8000/message/ \
