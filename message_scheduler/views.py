@@ -5,6 +5,8 @@ from dateutil import parser
 from django.views.decorators.csrf import csrf_exempt
 import datetime
 import json
+from tzlocal import get_localzone
+import pytz
 
 
 # Create your views here
@@ -26,7 +28,9 @@ def message_schedule(request):
 
 		parsed_datetime = parser.parse(request_datetime)
 		if parsed_datetime > datetime.datetime.now():
-			schedule_message.apply_async(args=(message,),eta=parsed_datetime)
+			time_zone = pytz.timezone(get_localzone().zone)
+			utc_date_time = time_zone.localize(parsed_datetime).astimezone(pytz.utc)
+			schedule_message.apply_async(args=(message,),eta=utc_date_time)
 			return JsonResponse(
 				{
 					"status":"SUCCESS",

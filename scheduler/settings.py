@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE =  get_localzone().zone
+TIME_ZONE = get_localzone().zone
 
 USE_I18N = True
 
