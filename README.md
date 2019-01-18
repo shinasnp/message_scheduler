@@ -1,11 +1,26 @@
 # message_scheduler
 Schedule message on a given date time
 ## Installation
-Install Virtaul enviornment
+
+Create a project directory
+
+```
+mkdir scheduler
+cd scheduler
+```
+
+Install Virtual enviornment
 
 ```
 sudo apt-get install python-virtualenv
 ```
+Clone the project
+
+```
+git clone https://github.com/shinasnp/message_scheduler.git
+
+```
+
 ### Steps:
 ```
 virtualenv -p python3 env
@@ -20,6 +35,7 @@ celery -A scheduler worker --loglevel info --without-gossip --without-mingle --w
 ```
 ### Start Api
 ```
+export CLOUDAMQP_URL=amqp://username:password@hostname/vhost
 python manage.py runserver
 ```
 ## Test
