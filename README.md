@@ -46,7 +46,8 @@ python manage.py test
 ```
 curl -X POST \
   http://127.0.0.1:8000/message/ \
-  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
-  -F 'datetime=16/01/2019 17:51' \
-  -F 'message=Sample Message'
+  -H 'Content-Type: application/json' \
+  -d '{"message":"Sample Message",
+	"datetime":"18/01/2019 14:31"
+}'
 ```
