@@ -4,6 +4,7 @@ from django.http import JsonResponse
 from dateutil import parser
 from django.views.decorators.csrf import csrf_exempt
 import datetime
+import json
 
 
 # Create your views here
@@ -12,9 +13,9 @@ def message_schedule(request):
 	'''
 		This will schedule given message on given date time .
 	'''
-
-	request_datetime = request.POST.get('datetime')
-	message = request.POST.get('message')
+	data = json.loads(request.body)
+	request_datetime = data.get('datetime')
+	message = data.get('message')
 	if not message or not request_datetime:
 		return JsonResponse(
 			{
@@ -22,6 +23,7 @@ def message_schedule(request):
 				"message":" message or datetime is missing "
 			},status=400)
 	try:
+
 		parsed_datetime = parser.parse(request_datetime)
 		if parsed_datetime > datetime.datetime.now():
 			schedule_message.apply_async(args=(message,),eta=parsed_datetime)

@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+if not os.environ.get("CLOUDAMQP_URL", ""):
+    raise Exception("CLOUDAMQP_URL Not Exported")
 
 CELERY_BROKER_URL =os.environ.get("CLOUDAMQP_URL", "")
 CELERY_BROKER_POOL_LIMIT = 1
