@@ -43,7 +43,7 @@ class ScheduleTests(TestCase):
 
 	def test_old_datetime(self):
 		"""
-            Should return 400 on valid data
+            Should return 400 on old date
         """
 		
 		mimetype = 'application/json'
@@ -53,7 +53,7 @@ class ScheduleTests(TestCase):
 		}
 		data = {
 			"message":"hellooo",
-			"datetime":"16/01/2019 16:32"
+			"datetime":"16/01/2018 16:32"
 		}
 		url = "/message/"
 		response = self.client.post(url, data=data, headers=headers)
